@@ -5,6 +5,12 @@ terraform {
       version = "3.92.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "myResourceGroup"
+    storage_account_name = "solutiononetfstate"
+    container_name       = "aks-tfstate"
+    key                  = "prod.terraform.tfstate"
+}
 }
 
 provider "azurerm" {
@@ -25,7 +31,7 @@ resource "azurerm_kubernetes_cluster" "AKSSolutionOneFase2" {
 
   default_node_pool {
     name           = "default"
-    node_count     = "2"
+    node_count     = "3"
     vm_size        = "Standard_B2s"
   }
 

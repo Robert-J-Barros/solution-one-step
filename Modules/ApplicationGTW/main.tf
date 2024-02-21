@@ -5,6 +5,12 @@ terraform {
       version = "3.92.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "myResourceGroup"
+    storage_account_name = "solutiononetfstate"
+    container_name       = "appgt-tfstate"
+    key                  = "prod.terraform.tfstate"
+}
 }
 
 provider "azurerm" {
