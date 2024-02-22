@@ -6,7 +6,7 @@ Este é um projeto Terraform para criar e gerenciar infraestrutura na nuvem. Ele
 
 ## Pré-requisitos
 
-- [Terraform](https://www.terraform.io/downloads.html) instalado (versão >= x.x.x)
+- [Terraform](https://www.terraform.io/downloads.html) instalado (versão >= 3.92.0)
 - Conta Azure com permissões para criar recursos
 
 ## Configuração
