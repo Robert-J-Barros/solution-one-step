@@ -43,3 +43,7 @@ az network vnet peering create -n AKStoAppGWVnetPeering -g $nodeResourceGroup --
 ```bash
 az network vnet subnet update --name aks-subnet --resource-group my-resource-group --vnet-name my-vnet --route-table route-table-aks
 ```
+
+### Enable Application Gateway to AKS
+
+![enable](https://solutiononetfstate.blob.core.windows.net/vm-tfstate/Captura de tela de 2024-02-22 13-58-45.png)
