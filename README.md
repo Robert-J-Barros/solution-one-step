@@ -47,4 +47,4 @@ az network vnet subnet update --name aks-subnet --resource-group my-resource-gro
 
 ### Enable Application Gateway to AKS
 
-![enable](https://solutiononetfstate.blob.core.windows.net/vm-tfstate/enable.png)
+![enable](https://github.com/Robert-J-Barros/solution-one-step/assets/105607298/4d791ee7-b6b4-474b-b02b-d0b8fde831c7)
