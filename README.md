@@ -14,7 +14,7 @@ Este é um projeto Terraform para criar e gerenciar infraestrutura na nuvem. Ele
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/seu-usuario/projeto-terraform.git
+   git clone https://github.com/Robert-J-Barros/solution-one-step.git
    ```
 2. Access the module:
 
