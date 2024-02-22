@@ -26,7 +26,7 @@ data "azurerm_virtual_network" "VnetSolutionOneFase" {
     resource_group_name = var.resource_group_name
 }
 
-data "azurerm_subnet" "SubnetPubSolutionOneFase2" {
+data "azurerm_subnet" "SubnetPubAppGtwSolutionOneFase2" {
     name = var.subnet_name
     resource_group_name = var.resource_group_name
     virtual_network_name = data.azurerm_virtual_network.VnetSolutionOneFase.name
@@ -41,8 +41,8 @@ resource "azurerm_public_ip" "PublicIpGtwApplication" {
 }
 
 resource "azurerm_application_gateway" "network" {
-  name                = "ApplicationGatewaySolutionOne"
-  resource_group_name = "ResourceGroupSolutionOne"
+  name                = "ApplicationGatewaySolutionOne2"
+  resource_group_name = "ResourceGroupSolutionOneFase2"
   location            = "eastus"
 
   sku {
@@ -53,7 +53,7 @@ resource "azurerm_application_gateway" "network" {
 
   gateway_ip_configuration {
     name      = "appGatewayFrontendIP"
-    subnet_id = data.azurerm_subnet.SubnetPubSolutionOneFase2.id
+    subnet_id = data.azurerm_subnet.SubnetPubAppGtwSolutionOneFase2.id
     }
 
   frontend_ip_configuration {
@@ -95,5 +95,4 @@ resource "azurerm_application_gateway" "network" {
     priority		       = 100
   }
 }
-
 

@@ -18,6 +18,7 @@ provider "azurerm" {
 }
 
 
+
 resource "azurerm_resource_group" "ResourceGroupSolutionOneFase2" {
   name     = var.resource_group_name
   location = "East US"
@@ -35,6 +36,12 @@ resource "azurerm_subnet" "SubnetPubSolutionOneFase2" {
   resource_group_name  = azurerm_resource_group.ResourceGroupSolutionOneFase2.name
   virtual_network_name = azurerm_virtual_network.VnetSolutionOneFase.name
   address_prefixes     = ["172.31.0.0/24"]
+}
+resource "azurerm_subnet" "SubnetPubAppGtwSolutionOneFase2" {
+  name                 = var.subnet_name_appgtw
+  resource_group_name  = azurerm_resource_group.ResourceGroupSolutionOneFase2.name
+  virtual_network_name = azurerm_virtual_network.VnetSolutionOneFase.name
+  address_prefixes     = ["172.31.1.0/24"]
 }
 
 resource "azurerm_public_ip" "IpNatGatewaySolutionOneFase2" {
@@ -62,5 +69,33 @@ resource "azurerm_subnet_nat_gateway_association" "AssociationSubnetNat" {
   nat_gateway_id      = azurerm_nat_gateway.NatGatewaySolutionOneFase2.id
 }
 
+resource "azurerm_route_table" "NatRouteTableSolutionOne" {
+  name                = "natroutetable"
+  resource_group_name = azurerm_resource_group.ResourceGroupSolutionOneFase2.name
+  location            = azurerm_resource_group.ResourceGroupSolutionOneFase2.location
 
+  route {
+    name                   = "natroute"
+    address_prefix         = "0.0.0.0/0"
+    next_hop_type          = "VirtualAppliance"
+    next_hop_in_ip_address = "40.71.211.21"
+  }
+}
 
+# Tabela de rota para a VNet do NAT
+resource "azurerm_route_table" "VnetToNATRouteSolutionOne" {
+  name                = "vnetroutetable"
+  resource_group_name = azurerm_resource_group.ResourceGroupSolutionOneFase2.name
+  location            = azurerm_resource_group.ResourceGroupSolutionOneFase2.location
+
+  route {
+    name           = "internetroute"
+    address_prefix = "0.0.0.0/0"
+    next_hop_type  = "VirtualNetworkGateway"
+  }
+}
+
+resource "azurerm_subnet_route_table_association" "AssiciationNatRouteTableSolutionOne" {
+  subnet_id      = azurerm_subnet.SubnetPubSolutionOneFase2.id
+  route_table_id = azurerm_route_table.NatRouteTableSolutionOne.id
+}

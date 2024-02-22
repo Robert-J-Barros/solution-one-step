@@ -20,6 +20,6 @@ variable "vnet_name" {
 
 variable "subnet_name" {
   description = "Name of the subnet."
-  default     = "SubnetPubSolutionOneFase2"
+  default     = "SubnetPub2SolutionOneFase2"
 }
 
