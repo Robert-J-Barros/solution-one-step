@@ -14,3 +14,12 @@ variable "public_ip" {
   description = "Name of the public_ip."
   default     = "PublicIpSolutionOneFase2"
 }
+variable "nat_ip" {
+  description = "Name of the public_ip."
+  default     = "IpNatGatewaySolutionOneFase2"
+}
+variable "nat_name" {
+  description = "Name of the public_ip."
+  default     = "NatGatewaySolutionOneFase2"
+}
+
